@@ -3,12 +3,12 @@ var shakerMain = function(game){
 	resetSounds = true;
 	prev_reading = 0;
 	
-	MIN_DIF = 1.5;
+	MIN_DIF = 1.75;
 };
 
 shakerMain.prototype = {
     create: function(){ 
-        angleText = game.add.text(500, 20, "trombone!", {font: '26px', fill: 'white'});
+        angleText = game.add.text(250, 50, "trombone!", {font: '36px', fill: 'white'});
 
 		initPlugIns();
 		loadSounds();
@@ -16,7 +16,7 @@ shakerMain.prototype = {
 };
 
 function readAccel(acceleration){
-	accelY = Math.round(acceleration.y);
+	accelY = Math.round(acceleration.y * 10) / 10;
 	
 	angleText.text = accelY;
 	
