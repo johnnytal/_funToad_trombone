@@ -37,11 +37,8 @@ function readTrombAccel(event){
 
 	angleText.text = accelY;
 	
-	if (prev_reading != accelY){
-		if (accelY < 8){
-			notesToPlay[accelY].play();
-			try{ notesToPlay[prev_reading].stop(); }catch(e){}	
-		}
+	if (prev_reading > accelY && accelY < 8 && accelY > -1){
+		notesToPlay[accelY].play();
 	}
 	
 	prev_reading = accelY;
