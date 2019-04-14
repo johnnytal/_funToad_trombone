@@ -33,15 +33,11 @@ function readTrombAccel(event){
 	accelY = Math.round((event.beta + 180) / 8.5) - 15;
 	angleText.text = accelY;
 	
-	if (accelY < 5 && !sfx1.isPlaying && resetSfx1){
+	if (accelY < 5 && resetSfx1){
 		sfx1.play();
 		
 		resetSfx1 = false;
-		
-		if (sfx2.isPlaying){
-			sfx2.stop();
-		}
-		
+			
 		navigator.vibrate(35);
 	}
 	
