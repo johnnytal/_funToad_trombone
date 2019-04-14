@@ -1,23 +1,20 @@
 var trombMain = function(game){
-	prev_reading = 0;
 	accelY = 0;
-	notesToPlay = [];
+	
+	DEFAULT_COLOR = '#0f5420';
+	SOUND1COLOR = '#0541aab';
+	SOUND2COLOR = '#0f229af';
+	
+	resetSfx1 = true;
+	resetSfx2 = true;
 };
 
 trombMain.prototype = {
     create: function(){ 
-		notesToPlay = [
-			sfx1 = game.add.audio('B1'),
-			sfx2 = game.add.audio('C2'),
-			sfx3 = game.add.audio('C_2'),
-			sfx4 = game.add.audio('D2'),
-			sfx5 = game.add.audio('D_2'),
-			sfx6 = game.add.audio('E2'),
-			sfx7 = game.add.audio('F2'),
-			sfx8 = game.add.audio('G2')
-		];
-		
-		game.stage.backgroundColor = '#0f5420';
+		sfx1 = game.add.audio('tromb_short');
+		sfx2 = game.add.audio('tromb_long');
+
+		game.stage.backgroundColor = DEFAULT_COLOR;
     	
     	bg = game.add.image(0, 0, 'bg');
     	bg.alpha = 0.6;
@@ -36,15 +33,47 @@ function readTrombAccel(event){
 	accelY = Math.round((event.beta + 180) / 8.5) - 15;
 	angleText.text = accelY;
 	
-	if (prev_reading > accelY && accelY <= 7 && accelY >= 0){ // play the current note
-		notesToPlay[accelY].play();
+	if (accelY < 5 && !sfx1.isPlaying && resetSfx1){
+		sfx1.play();
 		
-		if (prev_reading < 8 && prev_reading > -1){ // stop the last note
-			notesToPlay[prev_reading].stop(); 
+		resetSfx1 = false;
+		
+		if (sfx2.isPlaying){
+			sfx2.stop();
 		}
+		
+		navigator.vibrate(35);
 	}
 	
-	prev_reading = accelY;
+	if (accelY >= 5){
+		resetSfx1 = true;
+	}
+	
+	if (accelY < 2 && !sfx2.isPlaying && resetSfx2){
+		sfx2.play();
+		
+		resetSfx2 = false;
+		
+		if (sfx1.isPlaying){
+			sfx1.stop();
+		}
+		
+		navigator.vibrate(50);
+	}
+	
+	if (accelY >= 2){
+		resetSfx2 = true;
+	}
+	
+	if (sfx1.isPlaying){
+		game.stage.backgroundColor = SOUND1COLOR;
+	}
+	else if(sfx2.isPlaying){
+		game.stage.backgroundColor = SOUND2COLOR;
+	}
+	else{
+		game.stage.backgroundColor = DEFAULT_COLOR;
+	}
 }
 
 function initPlugIns(){
