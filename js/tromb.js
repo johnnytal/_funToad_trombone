@@ -1,7 +1,7 @@
 var trombMain = function(game){
 	accelY = 0;
 	
-	DEFAULT_COLOR = '#ffffff;
+	DEFAULT_COLOR = '#ffffff';
 	SOUND1COLOR = '#ff00ff';
 	SOUND2COLOR = '#00ff00';
 	
