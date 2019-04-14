@@ -23,7 +23,7 @@ trombMain.prototype = {
     	bg.alpha = 0.6;
     	
     	
-        angleText = game.add.text(300, 50, "Play it!", {font: '32px', fill: 'white'});
+        angleText = game.add.text(300, 300, "Play it!", {font: '42px', fill: 'white'});
         
        	try{window.addEventListener('deviceorientation', readTrombAccel);} catch(e){}
        	
@@ -82,7 +82,7 @@ function gui(){
 	
 	var DISTANCE = 70;
 	
-    plus_accel_front = game.add.sprite(100, 180, 'plus');
+   /* plus_accel_front = game.add.sprite(100, 180, 'plus');
     plus_accel_front.scale.set(1.5, 1.5);
     plus_accel_front.inputEnabled = true;
     plus_accel_front.events.onInputDown.add(function(){
@@ -103,14 +103,14 @@ function gui(){
     }, this);
     
     backText = game.add.text(450, 180, "Ang 1: " + roundIt(min_angle_1),
-    {font: '35px', fill: 'black'});
+    {font: '35px', fill: 'black'});*/
 
     plus_angle_front = game.add.sprite(100, 30, 'plus');
     plus_angle_front.scale.set(1.5, 1.5);
     plus_angle_front.inputEnabled = true;
     plus_angle_front.events.onInputDown.add(function(){
 		min_angle_2 += 0.5;
-    	frontText.text = "Ang 2: " + roundIt(min_angle_2);
+    	frontText.text = "Angle: " + roundIt(min_angle_2);
     	plus_angle_front.tint = 0xf04030;
     	setTimeout(function(){plus_angle_front.tint = 0xffffff;}, 100);
     }, this);
@@ -120,13 +120,13 @@ function gui(){
     minus_angle_front.inputEnabled = true;
     minus_angle_front.events.onInputDown.add(function(){
     	min_angle_2 -= 0.5;
-    	frontText.text = "Ang 2: " + roundIt(min_angle_2);
+    	frontText.text = "Angle: " + roundIt(min_angle_2);
     	minus_angle_front.tint = 0xf04030;
     	setTimeout(function(){minus_angle_front.tint = 0xffffff;}, 100);
     }, this);
 	
-    frontText = game.add.text(450, 30, "Ang 2: " + roundIt(min_angle_2),
-    {font: '35px', fill: 'black'});
+    frontText = game.add.text(200, 180, "Angle: " + roundIt(min_angle_2),
+    {font: '64px', fill: 'black'});
 }
 
 function roundIt(_num){
