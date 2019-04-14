@@ -1,9 +1,9 @@
 var trombMain = function(game){
 	accelY = 0;
 	
-	DEFAULT_COLOR = '#0f5420';
-	SOUND1COLOR = '#0541aab';
-	SOUND2COLOR = '#0f229af';
+	DEFAULT_COLOR = '#ffffff;
+	SOUND1COLOR = '#ff00ff';
+	SOUND2COLOR = '#00ff00';
 	
 	resetSfx1 = true;
 	resetSfx2 = true;
@@ -54,9 +54,9 @@ function readTrombAccel(event){
 		
 		resetSfx2 = false;
 		
-		if (sfx1.isPlaying){
+		/*if (sfx1.isPlaying){
 			sfx1.stop();
-		}
+		}*/
 		
 		navigator.vibrate(50);
 	}
