@@ -41,6 +41,10 @@ function readTrombAccel(event){
 		sfx1.play();
 		
 		resetSfx1 = false;
+		
+		if (sfx2.isPlaying){
+			sfx2.stop();
+		}
 			
 		navigator.vibrate(35);
 	}
@@ -53,6 +57,10 @@ function readTrombAccel(event){
 		sfx2.play();
 		
 		resetSfx2 = false;
+		
+		if (sfx1.isPlaying){
+			sfx1.stop();
+		}
 
 		navigator.vibrate(50);
 	}
